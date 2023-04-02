@@ -66,7 +66,7 @@ do {
             }
             $icval="0x".dechex(bindec($args[2]));
             $shellcmd="i2cset -y 1 0x20 $icport $icval";
-            echo ""
+            echo "";
             passthru($shellcmd);
             $talkback="+OK\n";
         } else {
