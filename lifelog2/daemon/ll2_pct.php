@@ -8,7 +8,7 @@
 */
 			date_default_timezone_set("America/Vancouver");
 
-			define ("INTERVAL",50000); //The shortest interval on which the deamon can act (microseconds)
+			define ("INTERVAL", 30); //The shortest interval on which the deamon can act (seconds)
 
 			//Output a log-line
 			function lg($s){
@@ -34,9 +34,38 @@ lg("All libraries found.");
 
 
 lg("Entering daemon loop...waiting for switch operations.");
+
+
+function getMinute() {
+	return round(time() / 60);
+}
+
+function updateClockBrightness($ll, $previousBrightness, $previousMinute) {
+	//------------ Gradually transition the clock brightness ----------------------
+	if ($previousMinute != getMinute()) {
+
+		$nightVal = $ll->param_retrieve_value("7SGC_BRIGHTNESS_SLEEP","7SEGCLOCK",true);
+		$dayVal = $ll->param_retrieve_value("7SGC_BRIGHTNESS_WAKE","7SEGCLOCK",true);
+	
+		$difference = abs($dayVal - $nightVal);
+		
+		$nightviewPercent = $ll->nightview_percent();
+		$nightviewPercent = 1;
+		$clockBrightness = round($nightVal + (1 - $nightviewPercent) * $difference);
+
+		if ($previousBrightness != $clockBrightness) {
+			$ll->set7SegClockBrightness($clockBrightness);
+		}
+	}	
+}
+
+
 //The daemon loop
 ob_implicit_flush();
-while (true){
+$previousMinute = 0;
+$previousBrightness = 0;
+
+while (true){	
 	//Create the lifelog object
 	if ($ll=new jowe_lifelog())
 	{
@@ -62,13 +91,13 @@ while (true){
 		} else {
 			//The sun just rose
 			$ll->pct_recall_preset("_DAY");		
+			$ll->setMailboxLights(false);
 		}
 	}
 	
-	
-	
-	
-	
+	updateClockBrightness($ll, $previousBrightness, $previousMinute);
+
+	/*
 	//------------------------------ WRITING TO PORTS ------------------------------------------------
 	//Get the actual physical status of the ports (the status last written)
 	$port1_physical_status=$ll->param_retrieve_value("PCT_PORT1_PHYSICAL","POWERCONTROL");
@@ -139,7 +168,11 @@ while (true){
 		}
 		$ll->param_store("PCT_PORT2_PHYSICAL",$port2_new_status,"POWERCONTROL");
 	}
+	*/
+
+	$previousMinute = getMinute();
+
 	unset($ll);
-	usleep(INTERVAL);
+	sleep(INTERVAL);
 }
 ?>
