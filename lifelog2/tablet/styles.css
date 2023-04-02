@@ -1,0 +1,218 @@
+body {
+  color: #CCC;
+  background: black; }
+
+.temp {
+  padding-top: 10px;
+  font-size: 25px; }
+
+.temp dd, div {
+  font-size: 55px; }
+
+.button {
+  background: #000033;
+  width: 100%;
+  text-align: center;
+  border: 2px solid #7777FF;
+  border-radius: 5px;
+  font-size: 35px;
+  color: #9999DD;
+  padding: 30px 0px; }
+
+.frontbutton {
+  padding: 42px 0px; }
+
+.smallbutton {
+  background: #330033;
+  font-size: 40px;
+  padding: 20px 0px; }
+
+.preset-sw {
+  background: navy; }
+
+#clock {
+  background: #003333;
+  font-size: 95px;
+  text-align: center;
+  border: 2px solid #00FFFF;
+  border-radius: 5px;
+  color: white; }
+
+.spacer {
+  height: 25px; }
+
+.weather-info {
+  font-size: 30px;
+  color: #f0e27a;
+  padding-top: 5px;
+  height: 75px; }
+
+.temp-down, .temp-up {
+  color: #666;
+  font-size: 40px; }
+
+.d-temp {
+  font-size: 30px;
+  font-weight: normal;
+  padding-top: 5px;
+  color: gray; }
+
+.temp-name {
+  font-size: 25px;
+  font-weight: bold; }
+
+.highlight-bg {
+  color: #FFAAAA; }
+
+.busy-bg {
+  background: #BBBBDD;
+  color: #333399; }
+
+@-moz-keyframes wiggle {
+  0% {
+    -moz-transform: rotate(3deg); }
+  30% {
+    -moz-transform: rotate(-3deg); }
+  30% {
+    -moz-transform: rotate(3deg); } }
+@-webkit-keyframes wiggle {
+  0% {
+    -webkit-transform: rotate(3deg); }
+  30% {
+    -webkit-transform: rotate(-3deg); }
+  30% {
+    -webkit-transform: rotate(3deg); } }
+@keyframes wiggle {
+  0% {
+    transform: rotate(3deg); }
+  30% {
+    transform: rotate(-3deg); }
+  30% {
+    transform: rotate(3deg); } }
+.clicked, .set-timer:hover, .set-alarm:hover {
+  -ms-animation: wiggle .3s 1;
+  -moz-animation: wiggle .3s 1;
+  -webkit-animation: wiggle .3s 1;
+  animation: wiggle .3s 1; }
+
+#emails {
+  background: #8e0105;
+  padding: 0px 10px; }
+  #emails div {
+    border-bottom: 1px solid white;
+    padding: 3px; }
+  #emails div:last-child {
+    border-bottom: 0px solid gray; }
+  #emails .eh-age {
+    float: right; }
+  #emails .eh-subject {
+    color: #AAA; }
+  #emails p {
+    color: white;
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px; }
+
+#alarms, #alarms2 {
+  background: #05058e;
+  padding: 0px 10px; }
+  #alarms div, #alarms2 div {
+    border-bottom: 1px solid white;
+    padding: 3px; }
+  #alarms div:last-child, #alarms2 div:last-child {
+    border-bottom: 0px solid gray; }
+  #alarms .al-due, #alarms2 .al-due {
+    color: #DDD; }
+  #alarms .al-remaining, #alarms2 .al-remaining {
+    float: right;
+    color: white; }
+  #alarms .al-almost-expired, #alarms2 .al-almost-expired {
+    color: #fcad01 !important; }
+  #alarms .al-expired, #alarms2 .al-expired {
+    color: red !important; }
+  #alarms p, #alarms2 p {
+    color: white;
+    font-size: 34px;
+    margin: 0px;
+    padding: 0px; }
+
+#alarms2-container {
+  height: 140px;
+  padding-top: 25px;
+  margin-bottom: -30px; }
+
+.timer-ctrl {
+  background: purple;
+  color: white; }
+
+#status {
+  height: 140px;
+  padding: 0px 15px;
+  padding-top: 13px;
+  border: 2px solid #6e6b82;
+  border-radius: 5px; }
+  #status .status-info-line {
+    display: block;
+    font-size: 25px; }
+  #status .status-wattage {
+    float: right;
+    color: lime; }
+  #status .status-orange {
+    color: orange; }
+  #status .status-red {
+    color: red; }
+
+#doorbell {
+  font-size: 25px;
+  color: white;
+  background: brown;
+  padding: 7px;
+  border-radius: 5px;
+  text-align: center; }
+  #doorbell .db-answered {
+    color: lime; }
+  #doorbell .db-tap-to-answer {
+    color: yellow; }
+
+.channel-on {
+  border: 2px solid red;
+  background: green;
+  color: white; }
+
+.mailbox-locked {
+  border: 2px solid red;
+  background: red;
+  color: white; }
+.mailbox-unlocked {
+  border: 2px solid gray;
+  background: black;
+  color: gray; }
+.mailboxNote{
+  position:absolute;
+  font-size:50%;
+  top:5px;
+  right:20px;
+} 
+#mailbox-sw-frontpage{
+	font-size: 30px;
+	font-weight: normal;
+	padding-top: 5px;
+	margin-left:15px;
+	border-radius:3px;
+	border:none;
+}
+  
+/* Nav */
+.nav-pills {
+  font-size: 200%; }
+
+.nav a:link {
+  color: gray; }
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  color: #BBBBBB;
+  background-color: #005; }
+
+/*# sourceMappingURL=styles.css.map */

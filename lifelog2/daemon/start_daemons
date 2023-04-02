@@ -1,0 +1,9 @@
+#!/bin/bash
+echo "Starting php deamons"
+cd /var/www/html/webservices/lifelog2/daemon/
+php ll2_alerts.php
+#php ll2_daemon.php &
+#php ll2_pct.php &
+#php ll2_system_status.php &
+#php ll2_weather.php &
+#exec bash & disown

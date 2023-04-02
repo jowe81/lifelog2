@@ -1,0 +1,211 @@
+<?php
+
+
+	//Where are the library scripts?
+	DEFINE("PATH_TO_LIBRARY","../../lib/");
+
+	//The website class
+	require_once PATH_TO_LIBRARY."class_jowe_site.php";
+	//The lifelog class
+	require_once PATH_TO_LIBRARY."class_jowe_lifelog.php";
+	//The day view class
+	require_once PATH_TO_LIBRARY."class_jowe_lifelog_calendar_views.php";
+	//=================FUNCTIONS===================
+	//Functions around calculating dates and times
+	require_once PATH_TO_LIBRARY."date_tools.php"; 
+	//Functions for email parsing etc.
+	require_once PATH_TO_LIBRARY."email_tools.php"; 	
+	//Basic processing for lifelog
+	require_once "../ll2_basicfns.php"; //This is in the same dir as index.php	
+	
+	//Create the website object $s
+	$s=new jowe_site();
+	
+	//Create the lifelog database interaction object $ll
+	$ll=new jowe_lifelog();
+	$calviews=new jowe_lifelog_calendar_views($ll);
+
+	//Used for avg and overtime calc
+	function xtime(){
+	    //return time(); //Use current timestamp for these calculations (real time)
+	    return getBeginningOfDay(time()); //Calculate to begining of today (calculations update only once a day)
+	    return getEndOfDay(time()); //Calculate to end of today (calculations update only once a day)
+	}
+	
+	
+	//Get timezone from settings/params table
+	date_default_timezone_set($ll->param_retrieve_value("TIMEZONE","LOCATION"));	
+	
+	
+	/*
+	 * Pseudo:
+	 * 
+	 * printYearStats(yyyy){
+	 *     for ($i=0;i<
+	 * }
+	 * 
+	 * 
+	 */
+	
+
+	
+	function getDataForPeriod($time1,$time2,$column="*"){
+	    global $ll;
+	    $data=array();
+	    if ($res=$ll->db("SELECT $column FROM ll2_events WHERE
+					(timestamp>".$time1." AND timestamp<".$time2." AND cat1='work' AND cat2='Tenth Church' AND active=true)
+					ORDER BY timestamp
+				;")){
+				$ue_nr=mysqli_num_rows($res);
+				while ($r=mysqli_fetch_array($res)){
+				    $data[]=$r;
+				}
+	    }
+	    return $data;
+	}
+	
+	function getWeekData($time){
+            return getDataForPeriod(getBeginningOfWeek($time),getBeginningOfNextWeek($time));
+	}
+	
+	
+	function isTimeOffRecord($r){
+	    $x=$r["cat4"];
+	    return($x=="STAT HOLIDAY" || $x=="VACATION" || $x=="SICK DAY" );
+	}
+	
+	function lengthOfDayHours($time){
+	    return 6.4;
+	}
+	
+	function getBgClass($h){
+	        $r="bgNearNormalHours";
+                if ($h<30) $r="bgLowHrs1";
+                if ($h<27) $r="bgLowHrs2";
+                if ($h<24)  $r="bgLowHrs3";
+                if ($h>=34) $r="bgHighHrs1";
+                if ($h>=38) $r="bgHighHrs2";
+                if ($h>=40) $r="bgHighHrs3";
+                return $r;
+	}
+
+        //Get total hours for dataset in array $data	
+	function getTotalHours($data,$includeTimeOff=true){
+	    $t=0;
+	    foreach($data as $r){
+	        $t+=$r["duration"];
+	        if ($includeTimeOff){
+	            if (isTimeOffRecord($r)){
+	                $t+=HOUR*lengthOfDayHours($r["timestamp"]);
+	            }
+	        }
+	    }
+	    return $t;
+	}
+
+	function getAvgHoursForMonth($time){
+	        
+	}
+	
+	function printYearStats($yyyy){
+	    $r="<div class='year'>";
+	    $r.="<div class='yearName'>$yyyy</div>";
+	    $tsYear=getBeginningOfYear(strtotime("1 January ".$yyyy));
+	    $tsMonth=$tsYear; //beginning of the year is also the beginning of the first month
+	    for ($i=1;$i<13;$i++){
+	        //new month
+	        $totalHrsThisMonth=0; //Keep tally; not strictly speaking for the month, but the four- or five-week period it references
+	        $nullWeeksThisMonth=0;
+	        $r.="<div class='month'><div class='monthName cell'>".month_nr_to_name($i)."</div>";
+	        $tsWeek=getBeginningOfWeek($tsMonth); //this is either the last week of the previous month or the first week of the new month
+	        if ($tsWeek<$tsMonth){
+	            //tsWeek was the last week of previous month, skip ahead a week
+	            $tsWeek=getBeginningOfNextWeek($tsWeek);
+	        }
+	        $wkOfMonth=0;
+	        while(isSameMonth($tsWeek,$tsMonth)){
+	            $wkOfMonth++;
+	            $bgclass="";
+	            //new week
+	            if (!isSameWeek($tsWeek,time())){
+	                //not the current week
+	                $data=getWeekData($tsWeek);
+	                $weekHours=number_format(getTotalHours($data)/HOUR,1);
+	                if ($weekHours==0){
+	                    $weekHours="-";
+	                    $nullWeeksThisMonth++;
+	                } else {
+                            $bgclass=getBgClass($weekHours);
+                            $totalHrsThisMonth+=$weekHours;
+                        }
+	            } else {
+	                //This is the current week
+	                $weekHours="in progress";
+	            }
+	            $r.= "<div class='week cell $bgclass'>"
+	                ."  <div class='cellTop'>".month_nr_to_name($i,true)." ".date("d",$tsWeek)."-".date("d",getBeginningOfDay(getBeginningOfNextWeek($tsWeek)-1))
+	                ."  </div>"
+	                ."  <div class='cellBottom'>".$weekHours
+	                ."  </div>"
+	                ."</div>";	            
+	            $tsWeek=getBeginningOfNextWeek($tsWeek);
+	        }
+	        if ($wkOfMonth<5){
+	            //In months with less than 4 weeks still print a div for formatting purposes
+	            $r.="<div class='week cell nonweek'></div>";
+	        }
+	        $avgHrsForMonth=$totalHrsThisMonth/($wkOfMonth-$nullWeeksThisMonth);
+	        $avgHrsForMonthLabel="";
+	        if (!($nullWeeksThisMonth>1 || isSameMonth($tsMonth,time()))){
+	        //if ( (!isSameMonth($tsMonth,time())) && (time()>getBeginningOfNextMonth($tsMonth)-1) && !$monthHasNullWeek){
+                    //Month is past
+                    if ($avgHrsForMonth>0){
+	                    $avgHrsForMonthLabel=number_format($avgHrsForMonth,1);
+                    }
+                }
+                $r.="<div class='week cell'>$avgHrsForMonthLabel</div>";
+                
+	        $tsMonth=getBeginningOfNextMonth($tsMonth);
+	        $r.="</div>";
+	    }
+	    $r.="</div>";
+	    return $r;
+	}
+		
+
+	$r="";
+    $firstYearYYYY=2018;
+	$firstYear=getBeginningOfYear(strtotime("1 January ".$firstYearYYYY));
+	$thisYear=getBeginningOfYear(time());
+	
+    $yyyy=date("Y",$thisYear); //eg. 2019
+	while ($thisYear>=$firstYear){
+	   $r.=printYearStats($yyyy);
+	   $yyyy--;
+	   $thisYear=getBeginningOfYear(strtotime("1 January ".$yyyy));
+	}
+	
+	//$r=getDayOfWeekByName(time(),false);
+
+?>
+<!doctype html>
+<html>
+	<head>
+		<title>Johannes Weber: Work log for Tenth Church</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="worklog.css">
+		<link rel="stylesheet" type="text/css" href="worklog2.css">
+	</head>
+	<body>
+		<div class="title">
+			Johannes' live work log at Tenth
+			<div style='float:right;'>Updated <?php echo date("d/m/Y H:i");?></div>
+		</div>
+		<div class="summary">
+			<div class='summary_header'>Summary</div>
+    	</div>
+    	<div class="data">
+			<?php echo $r;?>
+		</div>
+	</body>
+</html>

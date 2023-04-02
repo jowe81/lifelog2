@@ -1,0 +1,228 @@
+<?php
+/* POP functions */
+
+//Needs email_tools.php
+require_once("email_tools.php");
+
+class jowe_pop_client {
+
+	private $server;
+	private $port;
+	private $user;
+	private $pass;
+	
+	private $connection; //Handle for connection
+	private $logged_in=false; //Bool
+	
+	private $num_messages=-1; //How many message in mbox? Is set by  the first call of get_number_of_messages()
+	
+	public function __construct($server="pop3.1blu.de",
+							$port=110,
+							$user="v166320_0-johannes",
+							$pass="jowejowe"){
+		//Set properties
+		$this->server=$server;
+		$this->port=$port;
+		$this->user=$user;
+		$this->pass=$pass;
+		
+	}
+
+	//Write to server
+	function write($s,$noecho=true){
+		if (!$noecho) { echo "\n<br/>Writing: '".$s."'"; }
+		fwrite($this->connection,$s."\n");
+	}
+
+	//Read from server
+	function read($noecho=true,$notrim=false){
+		if ($notrim){
+			$r=fgets($this->connection);
+		} else {
+			$r=ereg_replace("[\t\n\r]","",fgets($this->connection));
+		}
+		if (!$noecho){
+			echo "\n<br/>Reading: '".$r."'";
+		}
+		return $r;
+	}
+
+
+	//See if the response string $s has +OK at the beginning
+	function isOK($s){
+		if (strtoupper(substr($s,0,3))=="+OK"){
+			return true;
+		}
+		return false;
+	}
+
+
+	//Attempt connection to server
+	public function connect(){
+		$this->connection=fsockopen($this->server,$this->port,$errno,$errstr,30);
+		if (!$this->connection){
+			return false;
+		} else {
+			return $this->read(); //Return greeting from server
+		}
+	}
+	
+	
+	//Login
+	public function login(){
+		//For login we need to be connected but not logged in
+		if (($this->connection) && (!$this->logged_in)){
+			$this->write("USER ".$this->user,false);
+			$this->read(false);
+			$this->write("PASS ".$this->pass,false);
+			$rs=$this->read(false);
+			echo "\n";
+			if ($this->isOK($rs)) {
+				//Login was successful - set flag
+				$this->logged_in=true;
+			}	
+		}
+		return $this->logged_in;
+	}
+	
+	//Logout
+	public function logout(){
+		//For logout / disconnect we need to be connected 
+		if ($this->connection) {
+			$this->write("QUIT");
+			$rs=$this->read();
+			if ($this->isOK($rs)) {
+				//Login was successful - set flag
+				$this->logged_in=false;
+				return true;
+			}	
+		}
+		return false;
+	}
+	
+	//Disconnect from server	 (alias for logout())
+	public function disconnect(){
+		return $this->logout();
+	}
+	
+	//Retrieve the number of messages with the STAT command
+	public function get_number_of_messages(){
+		if (($this->connection) && ($this->logged_in)){
+			if ($this->num_messages==-1){ //This value not retrieved yet
+				$this->write("STAT");
+				$rs=$this->read();
+				if ($this->isOK($rs)){
+					//The STAT command was successful. Now extract the number of messages.
+					//It should begin at position 4 and go until the next space: +OK x xxxx
+					$result=substr($rs,4,strpos(substr($rs,4),' '));
+					$this->num_messages=$result;
+				} else {
+					//If value was not retrieved yet but also could not be retrieved, return false.
+					return false;
+				}
+			}
+			//If value was either retrieved earlier or now, just return it from cache
+			return $this->num_messages;
+		}
+		//If we are not both logged in and connected, return false
+		return false;
+	}
+
+	//Get a raw message, no parsing
+	public function get_raw_message($msg_id,$array=false){
+		if (($this->connection) && ($this->logged_in)){
+			$this->write("RETR $msg_id");
+			$rs=$this->read();
+			if ($this->isOK($rs)){
+				//If array was requested, create array - if not, just string
+				if ($array){
+					$t=array();
+				} else {
+					$t="";
+				}
+				do {
+					$rs=$this->read(true,true);
+					//If array was requested, add new element - if not, just add to string
+					if ($array){
+						$t[]=$rs;
+					} else {
+						$t.=$rs;
+					}
+				} while (ereg_replace("[\t\n\r]","",$rs)!=".");
+				return $t;
+			}
+		}
+		return false;
+	}
+
+	//Retrieves message #msg_id and parses into headers,body,from,to,etc..
+	public function get_message($msg_id){
+		if ($raw=$this->get_raw_message($msg_id,true)){ //Retrieve raw message as an array
+				//Now we have the whole message line by line in $raw
+				return parse_message($raw);
+		}
+		return false;
+	}
+	
+	
+	
+	//Retrieves all the header arrays for all messages in the inbox.
+	//Will return an array of the type produced by extract_headers(), which is keyed by message-ids
+	public function get_all_headers(){
+		$all_headers=array();
+		if (($this->connection) && ($this->logged_in)){
+			//Go through each message
+			for ($i=1;$i<=$this->num_messages;$i++){
+				echo "...$i";
+				//Request the headers only. Will end with ".'
+				$this->write("TOP $i 0");
+				$rs=$this->read();
+				if ($this->isOK($rs)){
+					//The TOP command was successful. Now read the headers.
+					$headers=array(); //The headers for the current message go in here
+					while ($rs!="."){ //TOP output will end with '.'
+						//Read next line
+						$rs=$this->read(true);
+						//Add line to headers-array
+						$headers[]=$rs;
+					}
+					
+					$all_headers[$i]=extract_headers($headers);
+				}
+			}
+			echo "...done\n";
+			return $all_headers;
+		}
+		return false;
+	}
+	
+	//Delete the message with number $id
+	public function delete_message($id){		
+		//We need to be connected, logged in, and the id must be valid
+		if (($this->connection) && ($this->logged_in) && ($this->get_number_of_messages()>=$id)){
+			$this->write("DELE $id");
+			$rs=$this->read();
+			if ($this->isOK($rs)){
+				//The DELE command was successful.
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	//Delete all messages
+	public function delete_all_messages(){
+		if (($this->connection) && ($this->logged_in)){
+			//Go through each message
+			for ($i=1;$i<=$this->get_number_of_messages();$i++){
+				if (!$this->delete_message($i)){
+					//Abort in case of error
+					return false;
+				}
+			}
+			return true;
+		}
+	}
+}
+
+?>

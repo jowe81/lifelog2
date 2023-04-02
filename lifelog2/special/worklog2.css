@@ -1,0 +1,178 @@
+
+div {
+	box-sizing:border-box;
+}
+
+.year {
+	border:1px solid black;
+	margin:5px;
+	padding:0px;
+	width:670px;
+	background-color:#EEE;
+}
+
+.currentYear {
+	background-color:#fffb89 !important;
+}
+
+.yearName {
+	font-size:200%;	
+	width:90px;
+	float:left;
+	padding-left:5px;
+}
+
+.month {
+	height:50px;
+	min-width:570px;
+	padding:0px;
+}
+
+.cell {
+	float:left;
+	height:50px;
+}
+
+.lcell {
+	height:20px;
+	display:inline-block;
+	margin:1px 1px;
+	text-align:center;
+}
+
+.monthName {
+	float:left;
+	width:90px;
+	min-height:20px;
+	padding:5px;
+}
+
+.week {	
+	width:70px;
+	font-size:80%;
+	padding:3px;
+}
+
+.weekavg {	
+	width:70px;
+	padding:3px;
+	padding-top:5px;
+}
+
+.headerRow {
+	height:40px;
+	min-width:570px;
+	background-color:black;
+	color:white;
+}
+
+.flatHeaderRow {
+	height:20px;
+	min-width:570px;
+	background-color:black;
+	color:white;
+}
+
+.headerCell {
+	width:70px;
+	height:30px;
+	float:left;
+	padding-top:6px;
+	padding-left:3px;
+	font-size:80%;
+}
+
+.verticalSpace {
+	margin-top:20px;
+}
+
+.bgNearNormalHours{
+	background-color:#eeeeee;
+}
+
+.bgLowHrs1{
+	background-color:#cef2ff !important;
+}
+
+.bgLowHrs2{
+	background-color:#89dfff !important;
+}
+
+.bgLowHrs3{
+	background-color:#50cdfc !important;
+}
+
+.bgHighHrs1{
+	background-color:#ffd789 !important;
+}
+.bgHighHrs2{
+	background-color:#ffc34f !important;
+}
+
+.bgRed{
+	background-color:#ff0000;
+	color:white;
+}
+
+.bgRed a{
+	color:white;
+}
+
+.bgGray{
+	background-color:#CCC;
+	color:white;
+}
+
+.bgHighHrs3{
+	background-color:#fcb423 !important;
+}
+
+.leftborderwide {
+	border-left:1px solid black;
+}
+
+.rightborderwide {
+	border-right:1px solid black;
+}
+
+.rightborder {
+	border-right:1px solid gray;
+}
+
+.leftborder {
+	border-left:1px solid gray;
+}
+
+#legend {
+}
+
+@media only screen and (max-width: 700px) {
+	.data{
+	    zoom: 0.8;
+	    -moz-transform: scale(0.8);
+	}
+}
+
+@media only screen and (max-width: 560px) {
+	.data{
+	    zoom: 0.6;
+	    -moz-transform: scale(0.6);
+	}
+}
+
+@media only screen and (max-width: 420px) {
+	.data{
+	    zoom: 0.5;
+	    -moz-transform: scale(0.5);
+	}
+}
+
+@media only screen and (max-width: 350px) {
+	.data{
+	    zoom: 0.4;
+	    -moz-transform: scale(0.4);
+	}
+}
+
+
+

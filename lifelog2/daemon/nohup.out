@@ -1,0 +1,175 @@
+2023/01/02 13:26:54: Starting up LifeLog2 WEATHER deamon...
+2023/01/02 13:26:54: Starting up LifeLog2 POWERCONTROL deamon...
+2023/01/02 13:26:54: Starting up LifeLog2 SYSTEM_STATUS deamon...
+2023/01/02 13:26:54: Starting up...
+2023/01/02 13:26:54: ./../../lib/class_jowe_pop_client.php
+2023/01/02 13:26:54: ./../../lib/class_jowe_lifelog.php
+2023/01/02 13:26:54: ./../../lib/date_tools.php
+2023/01/02 13:26:54: ./../../lib/class_jowe_lifelog.php
+2023/01/02 13:26:54: ./../../lib/class_jowe_lifelog.php
+2023/01/02 13:26:54: ./../../lib/date_tools.php
+2023/01/02 13:26:54: ./../../lib/date_tools.php
+2023/01/02 13:26:54: ./../../lib/string_tools.php
+2023/01/02 13:26:54: All libraries found.
+2023/01/02 13:26:54: ./../../lib/class_jowe_lifelog.php
+2023/01/02 13:26:54: ./../ll2_basicfns.php
+2023/01/02 13:26:54: All libraries found.
+2023/01/02 13:26:54: ./../../lib/date_tools.php
+2023/01/02 13:26:54: All libraries found.
+2023/01/02 13:26:54: Created jowe_pop_client object
+2023/01/02 13:26:54: ./../ll2_basicfns.php
+2023/01/02 13:26:54: All libraries found.
+2023/01/02 13:26:54: Entering daemon loop...waiting for switch operations.
+2023/01/02 13:26:54: Created jowe_lifelog object
+2023/01/02 13:26:54: Entering daemon loop...system diagnostics
+2023/01/02 13:26:54: Reloading parameters.
+2023/01/02 13:26:54: Created jowe_lifelog object
+2023/01/02 13:26:54: Entering daemon loop...
+2023/01/02 13:26:54: Created jowe_lifelog object
+2023/01/02 13:26:54: Diagnosing...
+2023/01/02 13:26:54: Attempting to create socket...
+
+Fatal error: Uncaught Error: Call to undefined function socket_create() in /var/www/html/webservices/lifelog2/daemon/ll2_pct.php:83
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/webservices/lifelog2/daemon/ll2_pct.php on line 83
+sh: 1: ping: not found
+
+Notice: Undefined offset: 5 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2062
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined index: success rate in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2113
+sh: 1: ping: not found
+
+Notice: Undefined offset: 5 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2062
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined index: success rate in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2113
+sh: 1: ping: not found
+
+Notice: Undefined offset: 5 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2062
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined index: success rate in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2113
+sh: 1: ping: not found
+
+Notice: Undefined offset: 4 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2062
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+df: /dev/md126: No such file or directory
+df: /dev/md127: No such file or directory
+2023/01/02 13:26:54: Complete. GOING TO SLEEP.
+2023/01/02 13:26:55: Connected (+OK Dovecot ready.)
+
+<br/>Writing: 'USER v166320_0-johannes'
+<br/>Reading: '-ERR [AUTH] Plaintext authentication disallowed on non-secure (SSL/TLS) connections.'
+<br/>Writing: 'PASS jowejowe'
+<br/>Reading: '-ERR [AUTH] Plaintext authentication disallowed on non-secure (SSL/TLS) connections.'
+2023/01/02 13:26:55: Login failed.
+2023/01/02 13:26:55: Checking for alerts...
+2023/01/02 13:26:55: No alerts are currently due.
+2023/01/02 13:26:55: Destroying objects...
+2023/01/02 13:26:55: Going to sleep for the next 400 seconds.
+
+Warning: file_get_contents(): php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 1739
+
+Warning: file_get_contents(http://rss.theweathernetwork.com/weather/cabc0010): failed to open stream: php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 1739
+
+Warning: file_get_contents(): php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 1739
+
+Warning: file_get_contents(http://rss.theweathernetwork.com/weather/usil0225): failed to open stream: php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 1739
+
+Warning: file_get_contents(): php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 1739
+
+Warning: file_get_contents(http://rss.theweathernetwork.com/weather/denw0022): failed to open stream: php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 1739
+2023/01/02 13:27:24: ERROR: rss fetch failed
+2023/01/02 13:27:24: Going to sleep for 1800 seconds
+2023/01/02 13:27:54: Reloading parameters.
+2023/01/02 13:27:54: Diagnosing...
+sh: 1: ping: not found
+
+Notice: Undefined offset: 5 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2062
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined index: success rate in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2113
+sh: 1: ping: not found
+
+Notice: Undefined offset: 5 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2062
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined index: success rate in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2113
+sh: 1: ping: not found
+
+Notice: Undefined offset: 5 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2062
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined index: success rate in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2113
+sh: 1: ping: not found
+
+Notice: Undefined offset: 4 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2062
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+df: /dev/md126: No such file or directory
+df: /dev/md127: No such file or directory
+2023/01/02 13:27:54: Complete. GOING TO SLEEP.
+2023/01/02 13:28:54: Reloading parameters.
+2023/01/02 13:28:54: Diagnosing...
+sh: 1: ping: not found
+
+Notice: Undefined offset: 5 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2062
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined index: success rate in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2113
+sh: 1: ping: not found
+
+Notice: Undefined offset: 5 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2062
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined index: success rate in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2113
+sh: 1: ping: not found
+
+Notice: Undefined offset: 5 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2062
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined index: success rate in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2113
+sh: 1: ping: not found
+
+Notice: Undefined offset: 4 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2062
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+
+Notice: Undefined offset: 1 in /var/www/html/webservices/lib/class_jowe_lifelog.php on line 2065
+df: /dev/md126: No such file or directory
+df: /dev/md127: No such file or directory
+2023/01/02 13:28:54: Complete. GOING TO SLEEP.

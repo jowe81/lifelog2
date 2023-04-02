@@ -1,0 +1,499 @@
+                                    
+/*
+	LifeLog2, global styles
+*/
+
+body {
+	background-color:#AAA;
+	background-image:url(img/gradient_gbv.jpg);
+	background-repeat:repeat-x;
+	font-family:arial;
+	font-size:10pt;
+ }
+
+a:link,a:visited {
+    text-decoration:none;
+    color:#B44A4A;
+}
+
+a:hover {
+    text-decoration:none;
+	color:#5050A0;
+}
+
+/*************************************************************************/
+
+/*DIV CONTAINER FORMATTING*/
+
+/*---Overall Container*/
+#container {
+	position:relative;
+    margin-left:auto;
+    margin-right:auto;
+    width:1250px;
+	height:600px;
+	background-image:url(img/lifeloglogo_fullwidth.gif);
+	background-repeat:no-repeat;
+	background-color:#033;
+	background-position:22px 445px;
+	border:1px solid white;
+}
+
+/*---Note underneath the container */
+#belowcontainer {
+	width:1250px;
+	height:13px;
+    margin-left:auto;
+    margin-right:auto;
+	font-size:8pt;
+	color:white;
+	text-align:center;
+}
+
+a.belowcontainer:link,a.belowcontainer:visited {
+    text-decoration:none;
+    color:#BBFFBB;
+}
+a.belowcontainer:hover {
+		color:orange;
+}
+
+
+
+
+
+/*---Inside container, left: Menu space*/
+#menu {
+    float:left;
+    width:149px;
+	height:600px;
+	background-color:white;
+	border-right:1px dotted gray;
+	background-image:url(img/lifeloglogo_100_127_t.gif);
+	background-repeat:no-repeat;
+	background-position:22px 445px;	
+}
+
+/*---Inside container, right: Content space*/
+#content {
+	position:relative;
+    float:right;
+    width:1100px;
+	height:600px;
+	background-color:#FFF;
+}
+
+/*---Inside container, full space (instead of #menu and #content)*/
+#fullspacecontent {
+    float:right;
+    width:1250px;
+	height:600px;
+	background-color:#033;
+	color:white;
+}
+
+/*---Inside container, full space (for login)*/
+#logincontainer {
+    float:right;
+    width:1250px;
+	height:600px;
+	/*background-image:url(img/lifeloglogo_fullwidth.gif);
+	background-repeat:no-repeat;
+	background-color:#033;
+	background-position:22px 445px;*/
+	color:white;
+}
+
+/*the login form*/
+#loginform {
+		width:350px;
+		margin-left:auto;
+		margin-right:auto;
+		margin-top:150px;
+}
+
+/*error messages*/
+#error {
+		color:orange;
+}
+
+/*system messages*/
+#message {
+		color:#AAAAFF;
+}
+/*********************************/
+
+/*Header for a group of menu items*/
+#menu_groupheader {
+	color:#999;
+	font-weight:bold;
+	padding-top:5px;
+	font-size:9pt;
+	width:95%;
+}
+
+/*Menu item*/
+#menu_item {
+	font-size:8pt;
+	padding-left:8px;
+}
+
+/*Inactive Menu item*/
+#inactive_menu_item {
+	font-size:8pt;
+	padding-left:8px;
+	color:#AAA;
+}
+
+/*Header for a group of menu items*/
+#content_header {
+	color:#999;
+	font-weight:bold;
+	padding-top:5px;
+	padding-bottom:14px;
+}
+
+/*Menu links*/
+a.menu:link,a.menu:visited {
+}
+a.menu:hover {
+	background:#EEE;
+}
+
+/**********************************/
+
+/*Login form*/
+
+#login_user {
+		width:200px;
+		border:1px solid white;
+		color:white;
+		background:#064;
+		padding:4px;
+}
+
+#login_password {
+		width:200px;
+		border:1px solid white;
+		color:white;
+		background:#064;
+		padding:4px;
+}
+
+#login_selectaction{
+		width:150px;
+		border:1px solid white;
+		color:white;
+		background:#064;
+		padding:0px;	
+}
+
+#login_submit{
+		width:50px;
+		border:1px solid white;
+		color:white;
+		background:#A94;
+		//padding:4px;	
+}
+
+
+/*Data entry form */
+
+#form_exp {
+		font-size:6pt;
+		color:gray;
+}
+
+
+/*Header cell of a whole section*/
+.form_hd_section {
+		background:white;
+		font-size:10pt;
+		color:black;
+		height:16px;
+		vertical-align:top;
+		text-align:left;
+		font-weight:bold;
+		border-bottom:1px solid black;
+		padding-top:10px;
+}
+
+/*Header cells*/
+.form_hd {
+		background:#FEE;
+		font-size:8pt;
+		color:gray;
+		height:16px;
+		vertical-align:top;
+		text-align:center;
+}
+
+/*Data area cells*/
+.form_dt {
+		background:#FFD;
+		vertical-align:top;
+}
+
+/*Listbox for first category*/
+.listbox_first_cat {
+		width:150px;
+		height:164px;
+		background:#EDD;
+		background-image:url(img/select_bg_cat.jpg);
+		background-repeat:no-repeat;
+		border:1px solid gray;
+		font-size:8pt;
+}
+
+/*Listbox for categories*/
+.listbox_cat {
+		width:150px;
+		height:164px;
+		background:#EDD;
+		border:1px solid gray;
+		font-size:8pt;
+}
+
+/*Input for categories*/
+.input_cat {
+		width:148px;
+		margin-bottom:2px;
+		background:#FDD;
+		border:1px solid gray;
+}
+
+/*Listbox for person*/
+.listbox_person {
+		width:150px;
+		height:164px;
+		background:#DDE;
+		border:1px solid gray;
+		font-size:8pt;
+}
+
+/*Input for person*/
+.input_person {
+		width:148px;
+		margin-bottom:2px;
+		background:#DDF;
+		border:1px solid gray;
+}
+
+/*Listbox account*/
+.listbox_account {
+		width:165px;
+		background:#FFD;
+		border:1px solid gray;
+		font-size:8pt;
+		height:58px;
+}
+
+/*Listbox priority*/
+.listbox_priority {
+		width:165px;
+		background:#FFD;
+		border:1px solid gray;
+}
+
+/*Input left column*/
+.input_account {
+		width:163px;
+		margin-bottom:2px;
+		background:#FFD;
+		border:1px solid gray;
+}
+
+/*Listbox for 2 digits*/
+.listbox_2d {
+		width:41px;
+		border:1px solid pink;
+		background:#FFD;
+}
+
+/*Listbox for 4 digits (year)*/
+.listbox_4d {
+		width:61px;
+		border:1px solid pink;
+		background:#FFD;
+}
+
+/*Input for dollar-amount (3 digits)*/
+.input_dollar {
+		width:28px;
+		border:0px;
+		border-bottom:1px solid gray;
+		background:#FFD;
+		color:red;
+		text-align:right;
+}
+
+/*Input for cent-amount (2 digits)*/
+.input_cent {
+		width:17px;
+		border:0px;
+		border-bottom:1px solid gray;
+		background:#FFD;
+		color:red;
+}
+
+/*Input 2 digits*/
+.input_2d {
+		width:17px;
+		border:0px;
+		border-bottom:1px solid gray;
+		background:#FFD;
+}
+
+/*Input 4 digits*/
+.input_4d {
+		width:31px;
+		border:0px;
+		border-bottom:1px solid gray;
+		background:#FFD;
+}
+
+/*The main notes text area*/
+.textarea_notes {
+		width:606px;
+		height:296px;
+		font-family:arial;
+		font-size:11pt;
+		background:#033;
+		border:none;
+		color:white;
+		padding:2px;
+}
+
+/*The file input*/
+.input_attachment {
+		background:#DDD;
+}
+
+/*Billboard*/
+.input_billboard {
+		width:305px;
+		background:#FFD;
+		border:1px solid gray;
+}
+
+/*Generic numeric values*/
+.input_gvs {
+		width:37px;
+		background:#FFD;
+		border:1px solid gray;
+}
+
+/**************** Person form ****************/
+/*Generic Input*/
+.input_personform {
+		width:250px;
+		margin-bottom:2px;
+		background:#FFD;
+		border:1px solid gray;
+}
+
+/*The main notes text area*/
+.textarea_notes_person {
+		width:246px;
+		height:210px;
+		font-family:arial;
+		font-size:11pt;
+		background:#FFD;
+		border:none;
+		padding:2px;
+}
+
+
+/***************** Post it form ******************/
+/* container div */
+#create_postit_container {
+		position:relative;
+		width:500px;
+		height:265px;
+		margin-left:auto;
+		margin-right:auto;
+		top:80px;
+		background:#FFFF80;
+		padding:5px;
+		border:1px gray solid;
+			
+}
+
+/*The postit notes text area*/
+#textarea_notes_postit {
+		width:490px;
+		height:170px;
+		font-family:arial;
+		font-size:11pt;
+		background:#FFFF80;
+		border:none;
+		padding:0px;
+		color:#DC4c4c;
+}
+
+/***************************************************CALENDAR VIEWS***************************/
+/*****************Navigation links***********/
+a.nav:link {color:#BBB;}      /* unvisited link */
+a.nav:visited {color:#BBB;}  /* visited link */
+a.nav:hover {color:#B00;}  /* mouse over link */
+a.nav:active {color:#BBB;}  /* selected link */
+
+/*****************Dayview******************/
+
+#dayview_container {
+		width:1100px;
+		height:550px;
+		background:#FFF;
+}
+
+/*The hour divs (extended attributes in the script) */
+#dayview_hour {
+		background:#FFEEEE;
+		position:absolute;
+		top:0px;
+		left:0px;
+}
+
+/*The NOW arrow*/
+#nowarrow{
+	position:absolute;
+    width:5px;
+	height:9px;
+	background-image:url(img/arrow.gif);
+	background-repeat:no-repeat;
+}
+
+/*The third column in day view*/
+#dv_third_col {
+		background:white;
+		/*border:1px solid gray;*/
+		/*padding: 1px;*/
+		position:absolute;
+		overflow:auto;
+}
+
+/*Third col events*/
+#dayview_untimed_event {
+		background:gray;
+}
+#dayview_punctual_event {
+		background:blue;
+}
+#dayview_journal {
+		background:green;
+}
+
+/*Grid links to edit/create event */
+a.link_past {
+		color:#999;
+}
+
+a.link_future {
+		color:#A00;
+}
+
+/******************** inout link on billboard***************/
+
+a.inoutlink {
+		color:black; /*this is so that ffox won't put colored dots around the focused link*/
+}

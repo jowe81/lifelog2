@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<title>LL PCT</title>
+		<style>
+			body {
+				color:#CCC;
+				background:black;
+			}
+			
+			.temp {
+				padding-top:10px;
+				font-size:25px;
+			}
+			
+			.temp dd{
+				font-size:45px;
+			}
+			
+		</style>
+	</head>
+	<body>
+	
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 temp text-center">
+				<dl>
+					<dt>Outside</dt>
+					<dd id="temp1"></dd>
+				</dl>
+			</div>
+			<div class="col-sm-3 temp text-center">
+				<dl>
+					<dt>Living room</dt>
+					<dd id="temp2"></dd>
+				</dl>
+			</div>
+			<div class="col-sm-3 temp text-center">
+				<dl>
+					<dt>Bathroom</dt>
+					<dd id="temp3"></dd>
+				</dl>
+			</div>
+			<div class="col-sm-3 temp text-center">
+				<dl>
+					<dt>Bedroom</dt>
+					<dd id="temp4"></dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+	<script>
+		var tempobj={};
+	
+		$(document).ready(function(){
+
+			function updateUI(){
+				if (tempobj.temp1){
+					for (var i=1;i<5;i++){
+						t=tempobj.temp[i-1];
+						
+						if (t==Math.floor(t)){
+							t=t+".0";
+						}
+						style="color:lime;";
+						if (t<20){
+							style="color:#7777FF;";
+						} else if ((t>25) && (t<=28)){
+							style="color:#FF5500;";
+						} else if (t>28){
+							style="color:#FF0000;";
+						}
+						$("#temp"+i).html('<span style="'+style+'">'+t+'<small></small></span>');
+					}
+				}
+			}
+			
+			function getTemp(){
+				$.get("http://192.168.1.200:8002/",function(data){
+					tempobj=data;
+					updateUI();
+				});
+				setTimeout(getTemp,5000);
+			}
+
+			getTemp();
+		});
+	</script>
+	</body>
+</html>
+

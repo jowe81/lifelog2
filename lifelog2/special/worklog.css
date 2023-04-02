@@ -1,0 +1,171 @@
+@charset "UTF-8";
+
+body {
+	margin:0px;
+	padding:0px;
+	font-family:Arial,sans-serif;
+}
+
+.title {
+	background:gray;
+	color:#CCC;
+	padding:3px 13px;
+	font-size:70%;
+	width:100%;
+	box-sizing:border-box;
+}
+
+.data {
+	margin:10px;
+	padding:3px;
+}
+
+.summary {
+	background:black;
+	color:white;
+	padding:10px;
+	text-align:right;	
+	width:100%;
+	box-sizing:border-box;
+}
+
+.summary .data{
+	min-width:60px;
+	display:inline-block;
+	margin:0px;
+}
+.summary_header {
+	font-size:150%;
+	text-align:left;
+}
+
+.fixed_width_block {
+	display:inline-block;
+	min-width:150px;
+	text-align:center;	
+	margin:5px;
+}
+
+.bg_red {
+	padding:3px;
+	border-radius:5px;
+	color:white;
+	background:#cc0000;
+}
+
+.red {
+	color:red;
+}
+
+.bg_orange {
+	padding:3px;
+	border-radius:5px;
+	border:1px solid orange;
+	background:#f57900;
+	color:white;
+}
+
+.orange {
+	color:#ff9900;	
+}
+
+.green {
+	color:lime;
+}
+
+.bg_green {
+	padding:3px;
+	border-radius:5px;
+	border:1px solid green;
+	background:#c8e2d3;
+	color:green;
+}
+
+.bg_blue {
+	padding:3px;
+	border-radius:5px;
+	border:1px solid #77E;
+	background:#EEF;
+	color:blue;	
+}
+
+.week_seperator{
+	margin-top:60px;
+	margin-bottom:20px;
+	font-size:150%;
+}
+
+.week_total{
+	position:relative;
+	margin-left:10px;
+}
+
+.week_total img {
+	width:25px;
+	height:25px;
+	float:left;
+	position:relative;
+	top:-1px;
+	margin:2px;
+	margin-right:8px;
+}
+
+.day_seperator {
+}
+
+.event {
+	color:#000000;
+	background:#F5F5F5;
+	border:1px dotted gray;
+	padding:20px;
+	margin:10px;
+	position:relative;
+	max-width:800px;
+}
+
+.event_time {
+	font-size:80%;
+	color:#3d7d2c;
+}
+
+.event_cat {
+	color:#3d7d2c;
+}
+.event_notes {
+	color:#555753;
+}
+
+.event_info_icon {
+	float:right;
+	height:37px;
+	position:absolute;
+	right:10px;
+	top:0px;
+}
+
+.nlink {
+	color:white;
+	width:120px;
+	text-align:center;
+	padding:8px 6px 0px 6px;
+	margin:5px;
+	background:rgba(100,100,255,.8);
+	border-radius:5px;
+	position:fixed;
+	top:18px;
+	right:0px;
+	height:30px;
+	font-size:15px;
+	font-weight:bold;
+	text-decoration:none;
+	z-index:300;
+}
+
+.nlink a{
+	color:white;
+}
+
+.nlink:hover{
+	background:rgba(100,100,255,1);
+}
+

@@ -1,0 +1,83 @@
+
+
+
+#top-jumbotron{
+	margin-bottom:0px;
+	color:White;
+	background:#333;
+	border-radius:0;
+}
+
+#outerContainer {
+	padding:15px;
+}
+
+.row {
+	background:#EEE;
+}
+
+.time {
+	font-size:80%;
+	margin-left:10px;
+}
+
+.spacerWeek{
+	color:white;
+	background:#777;
+	font-style:italic;
+	font-weight:bold;
+	padding-top:5px;
+	border-top-left-radius:15px;
+	border-top-right-radius:5px;
+	padding-bottom:5px;
+	margin-top:40px;
+	border-bottom:1px solid black;
+	font-size:120%;
+}
+
+.markerDayOff {
+	background:#CFC;	
+}
+
+.markerWorkTenth {
+	background:#FCC;
+}
+
+.markerWorkOther {
+	background:#FAA;
+}
+
+.markerPostIt {
+	background:#FFC;
+}
+
+.col1{
+	font-weight:bold;
+}
+
+
+@media screen and (orientation:portrait) {
+	.col2{
+		margin-bottom:15px;
+		margin-left:10px;
+	}
+	
+	.row{
+		border-bottom:1px dotted gray;
+	}
+	
+}
+
+@media screen and ( max-height: 699px ) {
+	#top-jumbotron{
+		padding:5px;
+		margin-bottom:0px;
+		height:55px;
+		font-size:80%;
+	}
+	
+	#top-jumbotron > h2 {
+		font-size:120%;
+		margin:3px;
+	}		
+}

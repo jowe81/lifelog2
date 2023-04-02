@@ -1,0 +1,70 @@
+
+div {
+	box-sizing:border-box;
+}
+
+.year {
+	border:1px solid black;
+	margin:5px;
+	padding:5px;
+	min-width:700px;
+}
+
+.yearName {
+	font-size:200%;	
+}
+
+.month {
+	height:50px;
+	min-width:700px;	
+	border-bottom:1px dotted;
+}
+
+
+.cell {
+	float:left;
+	height:50px;
+}
+
+.monthName {
+	float:left;
+	width:150px;
+	
+}
+
+.week {	
+	width:70px;
+	font-size:80%;
+	padding:3px;
+}
+
+.bgNearNormalHours{
+	background-color:#eeeeee;
+}
+
+.bgLowHrs1{
+	background-color:#cef2ff;
+}
+
+.bgLowHrs2{
+	background-color:#89dfff;
+}
+
+.bgLowHrs3{
+	background-color:#50cdfc;
+}
+
+.bgHighHrs1{
+	background-color:#ffd789;
+}
+.bgHighHrs2{
+	background-color:#ffc34f;
+}
+.bgHighHrs3{
+	background-color:#fcb423;
+}
+
+
+
+
+
